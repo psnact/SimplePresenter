@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "items": [
+    {
+      "type": "bible",
+      "title": "Opening Scripture",
+      "reference": "Psalm 23:1-6",
+      "data": {}
+    },
+    {
+      "type": "song",
+      "title": "Opening Worship",
+      "reference": "Amazing Grace",
+      "data": {}
+    },
+    {
+      "type": "song",
+      "title": "Worship",
+      "reference": "How Great Thou Art",
+      "data": {}
+    },
+    {
+      "type": "bible",
+      "title": "Sermon Text",
+      "reference": "John 3:16-18",
+      "data": {}
+    },
+    {
+      "type": "bible",
+      "title": "Closing Scripture",
+      "reference": "Romans 8:28",
+      "data": {}
+    }
+  ]
+}

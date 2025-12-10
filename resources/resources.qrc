@@ -1,0 +1,17 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource>
+        <file alias="Splashscreen.png">Splashscreen.png</file>
+        <file alias="SPlogo.png">SPlogo.png</file>
+        <file alias="Logo.ico">Logo.ico</file>
+        <file alias="icons/youtube_logo.svg">YouTube_logo.svg</file>
+        <file alias="icons/youtube_logo.png">YouTube_logo.png</file>
+        <file alias="bibles/AMP.xml">../Bible/AMP.xml</file>
+        <file alias="bibles/ESV.xml">../Bible/ESV.xml</file>
+        <file alias="bibles/MBB.xml">../Bible/MBB.xml</file>
+        <file alias="bibles/MSG.xml">../Bible/MSG.xml</file>
+        <file alias="bibles/NASB.xml">../Bible/NASB.xml</file>
+        <file alias="bibles/NKJV.xml">../Bible/NKJV.xml</file>
+        <file alias="bibles/NLT.xml">../Bible/NLT.xml</file>
+    </qresource>
+</RCC>
