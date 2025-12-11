@@ -32,19 +32,18 @@ Complete listing of all project files with descriptions.
 | `SongManager.h/cpp` | Song .txt file loading and parsing |
 | `PlaylistManager.h/cpp` | Service playlist JSON handling |
 
-### Rendering & Display (8 files)
+### Rendering & Display (7 files)
 | File | Description |
 |------|-------------|
 | `CanvasWidget.h/cpp` | Base canvas with background and overlay rendering |
 | `ProjectionCanvas.h/cpp` | Projector output canvas with settings |
-| `LivestreamCanvas.h/cpp` | Stream output canvas with VDO.Ninja |
+| `LivestreamCanvas.h/cpp` | Secondary output canvas |
 | `BackgroundRenderer.h/cpp` | Background media rendering (image/video) |
 
-### Overlay & Streaming (4 files)
+### Overlay Rendering (3 files)
 | File | Description |
 |------|-------------|
 | `OverlayManager.h/cpp` | Text overlay positioning and styling |
-| `StreamEncoder.h/cpp` | FFmpeg RTMP encoding and streaming |
 
 ### User Interface Panels (6 files)
 | File | Description |
@@ -53,13 +52,12 @@ Complete listing of all project files with descriptions.
 | `SongPanel.h/cpp` | Song selection and section UI |
 | `PlaylistPanel.h/cpp` | Playlist editor UI |
 
-### Settings & Integration (4 files)
+### Settings & Integration (3 files)
 | File | Description |
 |------|-------------|
 | `SettingsDialog.h/cpp` | Application settings dialog |
-| `VdoNinjaWidget.h/cpp` | VDO.Ninja browser integration |
 
-**Total Source Files:** 31 files (15 .h + 15 .cpp + 1 main.cpp)
+**Total Source Files:** 28 files (13 .h + 14 .cpp + 1 main.cpp)
 
 ## Data Directory (`data/`)
 
@@ -167,14 +165,10 @@ SimplePresenter/
     ├── CanvasWidget.cpp
     ├── ProjectionCanvas.h
     ├── ProjectionCanvas.cpp
-    ├── LivestreamCanvas.h
-    ├── LivestreamCanvas.cpp
     ├── BackgroundRenderer.h
     ├── BackgroundRenderer.cpp
     ├── OverlayManager.h
     ├── OverlayManager.cpp
-    ├── StreamEncoder.h
-    ├── StreamEncoder.cpp
     ├── BiblePanel.h
     ├── BiblePanel.cpp
     ├── SongPanel.h
@@ -183,8 +177,6 @@ SimplePresenter/
     ├── PlaylistPanel.cpp
     ├── SettingsDialog.h
     ├── SettingsDialog.cpp
-    ├── VdoNinjaWidget.h
-    └── VdoNinjaWidget.cpp
 ```
 
 ## Build Artifacts (Generated)

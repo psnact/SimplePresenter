@@ -6,13 +6,13 @@
 
 **Previous Design:**
 - Projection canvas in separate window
-- Livestream canvas in separate window
+- Secondary canvas in separate window
 - Main window only had controls
 
 **New Design:**
 - **Single main window** with all controls and previews
 - **Top section:** Bible/Songs tabs + Playlist panel (horizontal split)
-- **Bottom section:** Side-by-side canvas previews (Projection + Livestream)
+- **Bottom section:** Side-by-side canvas previews (Projection + secondary preview)
 - **Resizable splitters:** Adjust proportions between controls and previews
 
 ### Benefits
@@ -29,9 +29,9 @@
 ┌─────────────────────────────────────────────────────────────┐
 │ SimplePresenter                                    [_][□][X] │
 ├─────────────────────────────────────────────────────────────┤
-│ File  Stream  Tools  Help                                    │
+│ File  Tools  Help                                            │
 ├─────────────────────────────────────────────────────────────┤
-│ [New] [Open] [Save] | [Start Stream] [Clear] | [Settings]   │
+│ [New] [Open] [Save] | [Clear] | [Settings]                  │
 ├─────────────────────────────────────────────────────────────┤
 │                                                               │
 │ ┌─────────────────────────────┬─────────────────────────┐   │
@@ -47,7 +47,7 @@
 │ └─────────────────────────────┴─────────────────────────┘   │
 │ ═══════════════════════════════════════════════════════════ │ ← Resizable
 │ ┌───────────────────────────┬───────────────────────────┐   │
-│ │ Projection Preview        │ Livestream Preview        │   │
+│ │ Projection Preview        │ Secondary Preview         │   │
 │ │ ┌───────────────────────┐ │ ┌───────────────────────┐ │   │
 │ │ │                       │ │ │                       │ │   │
 │ │ │   John 3:16           │ │ │   John 3:16           │ │   │
@@ -181,7 +181,7 @@ After rebuilding, verify:
 - [x] Splitters are resizable
 - [x] Bible files load from `C:\SimplePresenter\Bible\`
 - [x] Projection preview updates when projecting
-- [x] Livestream preview updates when projecting
+- [x] Secondary preview updates when projecting
 - [x] Settings are saved and restored
 - [x] Splitter positions are saved and restored
 - [x] All features work as before
@@ -217,13 +217,12 @@ None currently. All features working as expected.
 Possible improvements based on this new layout:
 
 - [ ] Collapsible preview section
-- [ ] Tabbed preview (switch between Projection/Livestream)
+- [ ] Tabbed preview (switch between Projection/Secondary)
 - [ ] Detachable previews (pop out to separate window if needed)
 - [ ] Preview size presets (small/medium/large)
 - [ ] Hide/show individual previews
 
 ---
-
 **Version:** 1.0.1  
 **Date:** 2025-10-07  
 **Status:** Complete and tested

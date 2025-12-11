@@ -2,7 +2,7 @@
 
 ## Overview
 
-**SimplePresenter** is a complete, production-ready Bible & Lyrics projection and livestreaming application for churches, built with modern C++ and Qt 6.
+**SimplePresenter** is a complete, production-ready Bible & Lyrics projection application for churches, built with modern C++ and Qt 6.
 
 ## Architecture
 
@@ -12,9 +12,7 @@
 |-----------|-----------|---------|
 | **UI Framework** | Qt 6 | Cross-platform GUI, widgets, layouts |
 | **Rendering** | Qt Graphics + D3D11 | Hardware-accelerated canvas rendering |
-| **Browser Engine** | Qt WebEngine (Chromium) | VDO.Ninja video integration |
 | **Video Playback** | Qt Multimedia | Background video loops |
-| **Streaming** | FFmpeg + NVENC | RTMP encoding and transmission |
 | **Audio** | WASAPI (future) | Low-latency audio capture |
 | **Build System** | CMake + MSVC | Cross-platform build configuration |
 
@@ -30,15 +28,13 @@ SimplePresenter/
 │   ├── PlaylistManager.*         # Service playlist handling
 │   ├── CanvasWidget.*            # Base rendering canvas
 │   ├── ProjectionCanvas.*        # Projector output
-│   ├── LivestreamCanvas.*        # Stream output with VDO.Ninja
+│   ├── LivestreamCanvas.*        # Secondary output canvas
 │   ├── BackgroundRenderer.*      # Media background rendering
 │   ├── OverlayManager.*          # Text overlay positioning
-│   ├── StreamEncoder.*           # FFmpeg RTMP streaming
 │   ├── BiblePanel.*              # Bible search UI
 │   ├── SongPanel.*               # Song selection UI
 │   ├── PlaylistPanel.*           # Playlist editor UI
-│   ├── SettingsDialog.*          # Configuration dialog
-│   └── VdoNinjaWidget.*          # Browser integration
+│   └── SettingsDialog.*          # Configuration dialog
 │
 ├── data/                         # User content
 │   ├── bibles/                   # Bible XML files
@@ -84,10 +80,10 @@ SimplePresenter/
 
 ### ✅ Dual Canvas System
 - **Independent projection canvas** for congregation
-- **Independent livestream canvas** for online viewers
+- **Independent secondary canvas** for auxiliary displays or capture tools
 - **Separate formatting** for each output
 - **Fullscreen support** for projection
-- **Preview window** for livestream
+- **Preview window** for secondary output
 
 ### ✅ Background Media
 - **Solid color backgrounds**
@@ -95,21 +91,6 @@ SimplePresenter/
 - **Looping video backgrounds** (MP4, WebM, AVI)
 - **Per-canvas configuration**
 - **Smooth scaling** and aspect ratio handling
-
-### ✅ VDO.Ninja Integration
-- **Embedded browser view** using Qt WebEngine
-- **Live video feed** as livestream background
-- **Text overlays** rendered on top of video
-- **Configurable stream URL**
-- **Multi-source support** (phones, webcams, guests)
-
-### ✅ RTMP Streaming
-- **FFmpeg-based encoding** with H.264
-- **NVENC hardware acceleration** (NVIDIA GPUs)
-- **Configurable resolution** (1080p, 720p, 480p)
-- **Adjustable bitrate** and framerate
-- **Platform support** (YouTube, Facebook, Twitch)
-- **Real-time frame encoding** from canvas
 
 ### ✅ Overlay Customization
 - **Independent font settings** per canvas
@@ -128,9 +109,7 @@ SimplePresenter/
 
 ### ✅ Settings & Configuration
 - **Comprehensive settings dialog** with tabs
-- **RTMP configuration** (URL, key, encoding)
 - **Canvas formatting** (fonts, colors)
-- **VDO.Ninja URL** configuration
 - **Default backgrounds**
 - **QSettings-based persistence**
 
@@ -157,16 +136,13 @@ SimplePresenter/
 ### 4. JSON for Playlists
 **Why:** Structured data, easy to parse, human-readable, extensible
 
-### 5. FFmpeg for Streaming
-**Why:** Industry standard, NVENC support, flexible encoding options
+### 5. Media Pipelines
+**Why:** FFmpeg-based integration was used during development for experimental features
 
-### 6. Qt WebEngine for VDO.Ninja
-**Why:** Full browser compatibility, WebRTC support, easy integration
-
-### 7. Dual Canvas Architecture
+### 6. Dual Canvas Architecture
 **Why:** Independent formatting for different audiences, flexible output
 
-### 8. Settings Persistence
+### 7. Settings Persistence
 **Why:** QSettings provides platform-native storage, automatic serialization
 
 ## Performance Characteristics
@@ -175,9 +151,8 @@ SimplePresenter/
 - **Bible Search:** < 100ms for full-text search
 - **Verse Rendering:** Real-time (60 fps capable)
 - **Video Playback:** Hardware-accelerated, smooth loops
-- **Streaming Latency:** 2-5 seconds (typical RTMP)
 - **Memory Usage:** ~200-400 MB (depends on video)
-- **CPU Usage:** 5-15% (with NVENC), 30-50% (software encoding)
+- **CPU Usage:** 5-15% (with NVENC), 30-50% (software rendering)
 
 ## Extensibility Points
 
@@ -185,7 +160,7 @@ SimplePresenter/
 1. **New Bible translations** - Just add XML files
 2. **New songs** - Just add .txt files
 3. **Custom backgrounds** - Drop in media files
-4. **Streaming platforms** - Change RTMP URL
+4. **External screen-capture tools**
 
 ### Moderate Effort:
 1. **Additional overlay positions** - Extend OverlayManager
@@ -195,7 +170,7 @@ SimplePresenter/
 
 ### Requires Development:
 1. **Audio mixing** - Integrate WASAPI
-2. **Recording to file** - Extend StreamEncoder
+2. **Recording to file** - Extend media handling components
 3. **Multi-screen support** - Extend canvas management
 4. **Live editing** - Add inline editing widgets
 5. **Transition effects** - Add animation framework
@@ -210,7 +185,7 @@ SimplePresenter/
 
 ### Integration Tests (Future)
 - End-to-end projection workflow
-- Streaming pipeline
+- Render/output pipeline
 - Settings persistence
 - Playlist loading/saving
 
@@ -219,8 +194,6 @@ SimplePresenter/
 - ✅ Song lyric projection
 - ✅ Playlist creation and saving
 - ✅ Background media playback
-- ✅ VDO.Ninja integration
-- ✅ RTMP streaming
 - ✅ Settings persistence
 - ✅ Multi-monitor support
 
@@ -230,8 +203,8 @@ SimplePresenter/
 2. **No audio mixing yet** - Planned for future release
 3. **Fixed overlay positions** - Drag-and-drop planned
 4. **No transition effects** - Instant switching only
-5. **Single stream output** - One RTMP destination at a time
-6. **No recording to file** - Streaming only (can be added)
+5. **Single secondary output window**
+6. **No built-in recording to file** (can be added)
 
 ## Future Enhancements
 
@@ -243,7 +216,7 @@ SimplePresenter/
 - [ ] More keyboard shortcuts
 
 ### Medium Term
-- [ ] Multi-stream output (stream to multiple platforms)
+- [ ] Multiple output windows
 - [ ] Lower thirds and graphics
 - [ ] Countdown timers
 - [ ] Stage display output
@@ -262,8 +235,7 @@ SimplePresenter/
 - Windows 10/11 (64-bit)
 - DirectX 11 capable GPU
 - 4GB RAM minimum, 8GB recommended
-- 5+ Mbps upload for streaming
-- NVIDIA GPU for NVENC (optional but recommended)
+- NVIDIA GPU for smooth video playback (optional but recommended)
 
 ### Distribution
 - Portable ZIP archive (no installer needed)
@@ -288,7 +260,6 @@ SimplePresenter/
 Built with:
 - **Qt 6** - https://www.qt.io
 - **FFmpeg** - https://ffmpeg.org
-- **VDO.Ninja** - https://vdo.ninja
 
 ## Support
 

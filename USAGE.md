@@ -9,13 +9,12 @@
    - The main operator window will open
    - Two additional windows will appear:
      - **Projection Output** (for projector/second screen)
-     - **Livestream Preview** (for monitoring stream output)
+     - **Secondary Preview** (for monitoring another output)
 
 2. **Initial Setup**
    - Go to **Tools → Settings**
-   - Configure your streaming settings (RTMP URL, stream key)
+   - Configure your Bible, song, and background settings as needed
    - Adjust overlay fonts and colors
-   - Set VDO.Ninja URL if using remote video
 
 ### Window Layout
 
@@ -122,7 +121,7 @@
 **Purpose:** Clean output for congregation viewing
 
 **Features:**
-- Independent formatting from livestream
+- Independent formatting from other canvases
 - Optimized for large text readability
 - Can use different backgrounds
 
@@ -130,20 +129,6 @@
 - Automatically uses second monitor if available
 - Fullscreen by default
 - Press F11 to toggle fullscreen
-
-### Livestream Canvas (Streaming)
-
-**Purpose:** Output for online viewers with video integration
-
-**Features:**
-- VDO.Ninja video background
-- Text overlays on top of video
-- Independent formatting
-- Preview window for operator
-
-**Controls:**
-- View → Show Livestream Window
-- Settings → Livestream tab for configuration
 
 ## Background Media
 
@@ -170,82 +155,6 @@
 - Keep video file sizes reasonable (<100MB)
 - Test video loops for seamless playback
 
-## VDO.Ninja Integration
-
-### What is VDO.Ninja?
-
-VDO.Ninja is a free browser-based video streaming service that lets you bring remote video feeds into your livestream.
-
-### Setup
-
-1. **Create a VDO.Ninja room:**
-   - Go to https://vdo.ninja
-   - Click "Create a Room"
-   - Share the room link with remote participants
-
-2. **Get the view link:**
-   - In VDO.Ninja, click "View Stream"
-   - Copy the URL (e.g., `https://vdo.ninja/?view=STREAMID`)
-
-3. **Configure SimplePresenter:**
-   - Tools → Settings → Livestream tab
-   - Paste VDO.Ninja URL
-   - Click OK
-
-4. **The video feed will appear** as the livestream canvas background
-
-### Use Cases
-
-- Remote speaker presentations
-- Guest worship leaders
-- Multi-camera setups
-- Phone camera feeds
-- Interview guests
-
-## Streaming Setup
-
-### Configure Streaming
-
-1. **Tools → Settings → Streaming tab**
-
-2. **Enter RTMP details:**
-   - **RTMP URL:** Platform-specific URL
-   - **Stream Key:** Your unique stream key
-
-3. **Set encoding options:**
-   - **Resolution:** 1920x1080 (Full HD) recommended
-   - **Bitrate:** 4000 kbps for good quality
-   - **Framerate:** 30 fps standard
-
-### Platform-Specific URLs
-
-**YouTube Live:**
-- RTMP URL: `rtmp://a.rtmp.youtube.com/live2/`
-- Get stream key from YouTube Studio → Go Live
-
-**Facebook Live:**
-- RTMP URL: `rtmps://live-api-s.facebook.com:443/rtmp/`
-- Get stream key from Facebook Live Producer
-
-**Twitch:**
-- RTMP URL: `rtmp://live.twitch.tv/app/`
-- Get stream key from Twitch Dashboard
-
-### Start Streaming
-
-1. **Configure settings** (see above)
-2. **Click "Start Streaming"** in toolbar
-3. **Status bar** shows "Streaming active"
-4. **Monitor livestream preview window**
-5. **Click "Stop Streaming"** when done
-
-### Streaming Tips
-
-- Test your stream before going live
-- Check your internet upload speed (minimum 5 Mbps for 1080p)
-- Use wired ethernet instead of WiFi if possible
-- Monitor CPU usage (hardware encoding recommended)
-
 ## Overlay Customization
 
 ### Adjusting Text Appearance
@@ -256,27 +165,11 @@ VDO.Ninja is a free browser-based video streaming service that lets you bring re
 3. Select text color
 4. Select background color (with transparency)
 
-**Livestream Canvas:**
-1. Settings → Livestream tab
-2. Independent font and color settings
-3. Can differ from projection output
-
-### Positioning Overlays
-
-Currently overlays are centered by default. Future versions will support:
-- Drag-and-drop positioning
-- Resize handles
-- Alignment presets (top, bottom, left, right)
-- Save custom positions per content type
-
 ## Keyboard Shortcuts
 
 - **Ctrl+N:** New playlist
 - **Ctrl+O:** Open playlist
 - **Ctrl+S:** Save playlist
-- **Ctrl+B:** Focus Bible search (planned)
-- **Ctrl+L:** Focus song search (planned)
-- **Space:** Project selected item (planned)
 - **Esc:** Clear all overlays
 - **F11:** Toggle fullscreen projection (planned)
 
@@ -294,11 +187,6 @@ Currently overlays are centered by default. Future versions will support:
    - Ensure all songs are loaded
    - Test backgrounds and overlays
 
-3. **Test streaming**
-   - Do a test stream before service
-   - Check audio levels
-   - Verify VDO.Ninja connections
-
 ### During Service
 
 1. **Use playlist for structure**
@@ -311,7 +199,7 @@ Currently overlays are centered by default. Future versions will support:
 
 3. **Monitor both outputs**
    - Check projection window (what congregation sees)
-   - Check livestream preview (what online viewers see)
+   - Check any secondary preview/output you are using
 
 ### Troubleshooting
 
@@ -325,21 +213,9 @@ Currently overlays are centered by default. Future versions will support:
 - Click Refresh button
 - Check file format (blank lines between sections)
 
-**Streaming not working:**
-- Verify RTMP URL and stream key
-- Check internet connection
-- Ensure FFmpeg DLLs are present
-- Try lower bitrate/resolution
-
-**VDO.Ninja not showing:**
-- Check URL is correct
-- Verify internet connection
-- Test URL in regular browser first
-- Ensure Qt WebEngine is installed
-
 **Overlay text too small/large:**
 - Adjust font size in Settings
-- Recommended: 48pt for projection, 36-48pt for livestream
+- Recommended: 48pt for projection, 36-48pt for secondary screens
 
 ## Advanced Features
 

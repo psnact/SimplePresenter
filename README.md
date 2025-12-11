@@ -1,17 +1,15 @@
-# Simple Bible & Lyrics Projection + Livestream Tool
+# Simple Bible & Lyrics Projection Tool
 
-A lightweight, Windows-only presentation app for churches featuring Bible projection, song lyrics, livestream overlays with VDO.Ninja video integration, and dual canvas output.
+A lightweight, Windows-only presentation app for churches featuring Bible projection, song lyrics, background media, and dual canvas output.
 
 ## Features
 
 - **Bible Projection**: Load XML Bible translations with instant search and verse navigation
 - **Song Lyrics**: Simple .txt file format with section-based projection
 - **Playlist Management**: Prepare and save complete service orders
-- **Dual Canvas Output**: Independent projection and livestream canvases
+- **Dual Canvas Output**: Independent projection and secondary canvases
 - **Background Media**: Full-screen images, videos, or solid colors
-- **VDO.Ninja Integration**: Embed live video streams as background
-- **RTMP Streaming**: Direct streaming to YouTube, Facebook, Twitch
-- **Overlay Customization**: Drag, resize, and position text overlays independently
+- **Overlay Customization**: Resize, and position text overlays independently
 
 ## Requirements
 
@@ -61,15 +59,13 @@ SimplePresenter/
 │   ├── PlaylistManager.*  # Service playlist handling
 │   ├── CanvasWidget.*     # Base canvas rendering
 │   ├── ProjectionCanvas.* # Projector output canvas
-│   ├── LivestreamCanvas.* # Livestream output canvas
+│   ├── LivestreamCanvas.* # Secondary output canvas
 │   ├── BackgroundRenderer.* # Background media rendering
 │   ├── OverlayManager.*   # Text overlay positioning
-│   ├── StreamEncoder.*    # FFmpeg RTMP encoding
 │   ├── BiblePanel.*       # Bible search UI
 │   ├── SongPanel.*        # Song selection UI
 │   ├── PlaylistPanel.*    # Playlist editor UI
 │   ├── SettingsDialog.*   # Application settings
-│   └── VdoNinjaWidget.*   # VDO.Ninja browser integration
 ├── resources/             # Application resources
 │   ├── icons/            # UI icons
 │   └── resources.qrc     # Qt resource file
@@ -113,18 +109,6 @@ Was blind but now I see
 ### Service Playlists
 Create playlists in the Playlist Panel and save as `.service` files in `data/services/`.
 
-### VDO.Ninja Setup
-1. Open VDO.Ninja settings in the app
-2. Enter your VDO.Ninja stream URL (e.g., `https://vdo.ninja/?view=STREAMID`)
-3. The video feed will appear as the livestream canvas background
-
-### Streaming Setup
-1. Open Settings → Streaming
-2. Enter RTMP URL (e.g., `rtmp://a.rtmp.youtube.com/live2/`)
-3. Enter Stream Key
-4. Configure resolution, bitrate, framerate
-5. Click "Start Streaming"
-
 ## Keyboard Shortcuts
 
 - **Ctrl+N**: New playlist
@@ -145,4 +129,3 @@ MIT License - See LICENSE file for details
 Built with:
 - Qt 6 (https://www.qt.io)
 - FFmpeg (https://ffmpeg.org)
-- VDO.Ninja (https://vdo.ninja)

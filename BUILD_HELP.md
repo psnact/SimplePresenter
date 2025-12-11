@@ -116,9 +116,9 @@ C:\Qt\6.x.x\msvcXXXX_64\bin\qmake.exe -query QT_VERSION
 
 **Required components:**
 - Qt Core, Gui, Widgets (always included)
-- Qt WebEngine (for VDO.Ninja)
+- Qt WebEngine
 - Qt Multimedia (for video playback)
-- Qt Network (for streaming)
+- Qt Network
 - Qt XML (for Bible files)
 
 **To add missing components:**
@@ -163,7 +163,7 @@ cmake --build . --config Release
 - ✅ Visual Studio 2019 or 2022
 - ✅ CMake 3.20+
 - ✅ Qt 6.5+
-- ✅ FFmpeg (optional, for streaming)
+- ✅ FFmpeg (optional, for advanced media features)
 
 **Verify CMake:**
 ```powershell

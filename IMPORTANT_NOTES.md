@@ -2,22 +2,7 @@
 
 ## Before Building
 
-### 1. Qt WebEngine Requirement
-
-**CRITICAL:** Qt WebEngine is required for VDO.Ninja integration.
-
-When installing Qt 6:
-- ✅ Check "Qt WebEngine" in the component list
-- ✅ Install both WebEngineCore and WebEngineWidgets
-- ❌ Do NOT skip this component
-
-If you get "QWebEngineView not found" errors:
-1. Re-run Qt Installer
-2. Select "Add or remove components"
-3. Check Qt WebEngine
-4. Install
-
-### 2. FFmpeg Version Compatibility
+### 1. FFmpeg Version Compatibility
 
 **Use Shared Libraries, NOT Static:**
 - ✅ Download: `ffmpeg-master-latest-win64-gpl-shared.zip`
@@ -114,80 +99,20 @@ C:\Qt\6.5.0\msvc2019_64\bin\windeployqt.exe .\build\Release\SimplePresenter.exe
 # Run windeployqt to copy all WebEngine files
 ```
 
-## Streaming Issues
-
-### NVENC Not Available
-
-**Symptoms:** Streaming fails or uses software encoding
-
-**Check:**
-1. Do you have an NVIDIA GPU?
-2. Is it GTX 600 series or newer?
-3. Are drivers up to date?
-
-**Fallback:** Application will use libx264 (software encoding)
-- Higher CPU usage
-- Still works, just slower
-
-### RTMP Connection Failed
-
-**Checklist:**
-1. ✅ Is RTMP URL correct?
-2. ✅ Is stream key correct?
-3. ✅ Is internet connection stable?
-4. ✅ Is upload speed sufficient (5+ Mbps)?
-5. ✅ Are you already streaming to this key?
-
-**Test Connection:**
-```powershell
-# Test with FFmpeg directly
-ffmpeg -re -f lavfi -i testsrc -c:v libx264 -f flv "rtmp://your-url/your-key"
-```
-
-### Low Streaming Quality
-
-**Optimize Settings:**
-- Reduce resolution (1280x720 instead of 1920x1080)
-- Lower bitrate (2500 kbps instead of 4000 kbps)
-- Reduce framerate (25 fps instead of 30 fps)
-- Enable NVENC if available
-- Close other applications
-
-## VDO.Ninja Issues
-
-### Video Not Showing
-
-**Checklist:**
-1. ✅ Is URL correct? (should start with https://vdo.ninja)
-2. ✅ Is internet connection working?
-3. ✅ Does URL work in regular browser?
-4. ✅ Is Qt WebEngine installed?
-
-**Test URL:**
-Open the VDO.Ninja URL in Chrome/Edge first to verify it works.
-
-### Audio Not Working
-
-**Note:** VDO.Ninja audio is handled by the browser engine.
-
-**Current Limitation:** Audio mixing not yet implemented.
-
-**Workaround:** Use separate audio capture in OBS or streaming software.
-
 ## Performance Issues
 
 ### High CPU Usage
 
 **Causes:**
-1. Software encoding (no NVENC)
-2. High resolution streaming
-3. Multiple video backgrounds
+1. Heavy video processing without hardware acceleration
+2. High resolution video backgrounds
+3. Multiple simultaneous video backgrounds
 4. Large Bible/song databases
 
 **Solutions:**
-- Enable NVENC (NVIDIA GPU)
-- Lower streaming resolution
-- Use static images instead of videos
+- Prefer hardware-accelerated decoding where available (e.g., NVENC-capable GPU)
+- Use lower-resolution background videos
+- Use static images instead of videos where possible
 - Optimize Bible XML files
 
 ### Lag or Stuttering
@@ -200,7 +125,7 @@ Open the VDO.Ninja URL in Chrome/Edge first to verify it works.
 **Solutions:**
 - Close unnecessary applications
 - Use wired ethernet instead of WiFi
-- Reduce streaming bitrate
+- Use lower-resolution or less demanding background media
 - Disable background applications
 
 ## Data File Issues
@@ -265,23 +190,13 @@ Get-Content data\services\myservice.service | ConvertFrom-Json
 
 ## Security Considerations
 
-### Stream Keys
+### Configuration Files
 
-**IMPORTANT:** Never commit stream keys to version control!
-
-Stream keys are stored in:
-- `%APPDATA%/SimplePresenter/SimplePresenter.ini` (Windows)
-
-Keep this file private.
-
-### VDO.Ninja URLs
-
-VDO.Ninja URLs may contain sensitive room IDs.
+Some settings files may contain sensitive information (such as file paths or internal configuration details).
 
 **Best Practice:**
-- Use password-protected rooms
-- Generate new URLs for each service
-- Don't share URLs publicly
+- Keep configuration files private
+- Avoid committing personal paths or sensitive data to version control
 
 ## Backup Recommendations
 
@@ -320,7 +235,7 @@ Before reporting issues, verify:
 - [ ] All DLLs copied to exe directory
 - [ ] Data files in correct directories
 - [ ] Settings configured correctly
-- [ ] Internet connection working (for streaming)
+-- [ ] Internet connection working (for any online resources)
 - [ ] Sufficient system resources
 
 ## Getting Help
@@ -346,10 +261,9 @@ Collect this information when reporting issues:
 ### Common Solutions
 
 1. **"It doesn't work"** → Check all DLLs are present
-2. **"Streaming fails"** → Verify RTMP URL and key
-3. **"Bible not loading"** → Check XML format
-4. **"Crashes on startup"** → Run from command line to see errors
-5. **"WebEngine issues"** → Reinstall Qt with WebEngine
+2. **"Bible not loading"** → Check XML format
+3. **"Crashes on startup"** → Run from command line to see errors
+4. **"WebEngine issues"** → Reinstall Qt with WebEngine
 
 ## Best Practices
 
@@ -359,7 +273,7 @@ Collect this information when reporting issues:
 2. **Test with real data before services**
 3. **Keep backups of working configurations**
 4. **Document custom changes**
-5. **Test streaming before going live**
+5. **Test projection and media before going live**
 
 ### Deployment
 
@@ -374,7 +288,7 @@ Collect this information when reporting issues:
 1. **Prepare playlists in advance**
 2. **Test all items before service**
 3. **Have backup plan** (PowerPoint, etc.)
-4. **Monitor stream during service**
+4. **Monitor outputs during service**
 5. **Save playlists after service**
 
 ## Known Limitations
@@ -382,11 +296,11 @@ Collect this information when reporting issues:
 ### Current Version (1.0)
 
 - ✅ Windows only (by design)
-- ✅ Single stream destination
+- ✅ Single projection + secondary output configuration
 - ✅ No audio mixing yet
 - ✅ Fixed overlay positions
 - ✅ No transition effects
-- ✅ No recording to file
+- ✅ No built-in recording to file
 
 ### Planned Features
 
@@ -394,7 +308,7 @@ Collect this information when reporting issues:
 - ⏳ Transition effects
 - ⏳ Audio mixing
 - ⏳ Recording to file
-- ⏳ Multi-stream output
+- ⏳ Multiple output windows
 
 ## Support Resources
 
@@ -412,7 +326,7 @@ This is a **production-ready** application, but:
 1. **Test thoroughly** before using in live services
 2. **Have a backup plan** (technical issues can happen)
 3. **Practice** with the interface before going live
-4. **Monitor** both projection and stream outputs
+4. **Monitor** what is shown on all outputs during the service
 5. **Keep it simple** - don't overcomplicate your setup
 
 **Remember:** The goal is to enhance worship, not distract from it.

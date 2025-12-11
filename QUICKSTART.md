@@ -40,7 +40,7 @@ cmake --build . --config Release
 ### Step 3: First Run Configuration
 
 1. **Launch SimplePresenter**
-   - Three windows will open: Main, Projection, Livestream Preview
+   - Two main windows will open: Main and Projection
 
 2. **Load Sample Bible**
    - Sample Bible is already in `data/bibles/sample_bible.xml`
@@ -49,29 +49,13 @@ cmake --build . --config Release
 3. **Try Projecting a Verse**
    - Type "John 3:16" in the Bible search box
    - Click "Project"
-   - Verse appears on Projection and Livestream windows
+   - Verse appears on the Projection window
 
 4. **Try a Song**
    - Click "Songs" tab
    - Select "Amazing Grace"
    - Click a section
    - Click "Project Section"
-
-### Step 4: Configure Streaming (Optional)
-
-1. **Open Settings**
-   - Tools → Settings → Streaming tab
-
-2. **For YouTube Live:**
-   - RTMP URL: `rtmp://a.rtmp.youtube.com/live2/`
-   - Stream Key: (get from YouTube Studio)
-   - Resolution: 1920x1080
-   - Bitrate: 4000 kbps
-   - Framerate: 30 fps
-
-3. **Start Streaming**
-   - Click "Start Streaming" in toolbar
-   - Monitor in Livestream Preview window
 
 ## Common Tasks
 
@@ -119,17 +103,6 @@ Second verse line 2
 3. **Save:** File → Save Playlist
 4. **During service:** Double-click items to project
 
-### Use VDO.Ninja for Remote Video
-
-1. **Go to https://vdo.ninja**
-2. **Create a room** and invite participants
-3. **Get view link** (e.g., `https://vdo.ninja/?view=ABC123`)
-4. **In SimplePresenter:**
-   - Tools → Settings → Livestream tab
-   - Paste VDO.Ninja URL
-   - Click OK
-5. **Video appears** as livestream background
-
 ## Troubleshooting
 
 ### Build Errors
@@ -158,18 +131,13 @@ Second verse line 2
 - Click "Refresh" button
 - Check blank lines separate sections
 
-**Streaming fails**
-- Verify RTMP URL and stream key
-- Test internet connection (5+ Mbps upload)
-- Try lower bitrate (2500 kbps)
-
 ## Next Steps
 
 - **Read USAGE.md** for detailed features
 - **Read BUILD.md** for advanced build options
 - **Customize overlays** in Settings
 - **Create your service playlists**
-- **Test streaming** before going live
+- **Test projection and backgrounds** before going live
 
 ## Support
 
@@ -187,16 +155,14 @@ For detailed documentation:
 
 2. **Test before service**
    - Verify projection window on second screen
-   - Check streaming connection
-   - Test VDO.Ninja if using remote video
+   - Check that all displays show correctly
 
 3. **During service**
    - Use playlist for structure
    - Press Esc to clear overlays between items
-   - Monitor both projection and livestream
+   - Monitor both projection and secondary output
 
 4. **After service**
-   - Stop streaming
    - Save any changes to playlist
    - Close application
 
