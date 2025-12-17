@@ -7,6 +7,12 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+ if(APPLE)
+     if(NOT CMAKE_OSX_DEPLOYMENT_TARGET)
+         set(CMAKE_OSX_DEPLOYMENT_TARGET "13.0" CACHE STRING "Minimum macOS version to target")
+     endif()
+ endif()
+
 # Qt 6 core packages (required)
 find_package(Qt6 REQUIRED COMPONENTS
     Core
@@ -82,17 +88,55 @@ set(RESOURCES
 )
 
 if(APPLE)
+    # Optional: Sparkle framework for macOS in-app updates
+    set(SPARKLE_FRAMEWORK_SEARCH_DIR "${CMAKE_CURRENT_SOURCE_DIR}/third_party")
+    find_library(SPARKLE_FRAMEWORK Sparkle PATHS "${SPARKLE_FRAMEWORK_SEARCH_DIR}" NO_DEFAULT_PATH)
+    if(NOT SPARKLE_FRAMEWORK)
+        find_library(SPARKLE_FRAMEWORK Sparkle)
+    endif()
+
+    set(SIMPLEPRESENTER_BUNDLE_ID "com.psnact.SimplePresenter")
+    set(SIMPLEPRESENTER_SPARKLE_FEED_URL "https://psnact.github.io/SimplePresenter/appcast.xml")
+    set(SIMPLEPRESENTER_SPARKLE_PUBLIC_KEY "cXl5sb5n1HCFD9fhVV842OWe3s9P1kBANV5eRd9LE78=")
+endif()
+
+if(APPLE)
     # Build a proper .app bundle on macOS. Use a custom .icns icon when the
     # file is present; otherwise, build without an application icon instead of
     # failing configuration.
     set(MACOSX_BUNDLE_ICON_FILE SimplePresenter.icns)
     set(APP_ICON_MACOS "${CMAKE_CURRENT_SOURCE_DIR}/resources/SimplePresenter.icns")
+
+    # Sparkle requires SUFeedURL and SUPublicEDKey in Info.plist
+    set(INFO_PLIST_IN "${CMAKE_CURRENT_SOURCE_DIR}/resources/Info.plist.in")
+    set(INFO_PLIST_OUT "${CMAKE_CURRENT_BINARY_DIR}/Info.plist")
+    if(EXISTS "${INFO_PLIST_IN}")
+        configure_file("${INFO_PLIST_IN}" "${INFO_PLIST_OUT}" @ONLY)
+    endif()
+
+    if(SPARKLE_FRAMEWORK)
+        list(APPEND SOURCES
+            src/MacSparkleUpdater.h
+            src/MacSparkleUpdater_sparkle.mm
+        )
+        set_source_files_properties(src/MacSparkleUpdater_sparkle.mm PROPERTIES COMPILE_FLAGS "-fobjc-arc")
+    else()
+        list(APPEND SOURCES
+            src/MacSparkleUpdater.h
+            src/MacSparkleUpdater.cpp
+        )
+    endif()
+
     if(EXISTS "${APP_ICON_MACOS}")
         set_source_files_properties(${APP_ICON_MACOS} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
         add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${SOURCES} ${RESOURCES} ${APP_ICON_MACOS})
     else()
         message(WARNING "SimplePresenter macOS icon not found at ${APP_ICON_MACOS}; building without custom .icns icon.")
         add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${SOURCES} ${RESOURCES})
+    endif()
+
+    if(EXISTS "${INFO_PLIST_OUT}")
+        set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_INFO_PLIST "${INFO_PLIST_OUT}")
     endif()
 elseif(WIN32)
     # Windows GUI executable with embedded icon
@@ -127,6 +171,32 @@ if (Qt6WebEngineWidgets_FOUND)
 endif()
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE SIMPLEPRESENTER_VERSION="${PROJECT_VERSION}")
+
+if(APPLE)
+    if(SPARKLE_FRAMEWORK)
+        target_link_libraries(${PROJECT_NAME} PRIVATE ${SPARKLE_FRAMEWORK})
+        target_compile_definitions(${PROJECT_NAME} PRIVATE SIMPLEPRESENTER_HAVE_SPARKLE)
+
+        # find_library() may return either .../Sparkle.framework or .../Sparkle.framework/Sparkle
+        get_filename_component(SPARKLE_FRAMEWORK_DIR "${SPARKLE_FRAMEWORK}" DIRECTORY)
+        if("${SPARKLE_FRAMEWORK}" MATCHES "\\.framework$")
+            set(SPARKLE_FRAMEWORK_DIR "${SPARKLE_FRAMEWORK}")
+        endif()
+
+        set_target_properties(${PROJECT_NAME} PROPERTIES
+            BUILD_RPATH "@loader_path/../Frameworks"
+            INSTALL_RPATH "@loader_path/../Frameworks"
+        )
+
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_BUNDLE_DIR:${PROJECT_NAME}>/Contents/Frameworks"
+            COMMAND ${CMAKE_COMMAND} -E copy_directory "${SPARKLE_FRAMEWORK_DIR}" "$<TARGET_BUNDLE_DIR:${PROJECT_NAME}>/Contents/Frameworks/Sparkle.framework"
+            VERBATIM
+        )
+    else()
+        message(WARNING "Sparkle.framework not found. To enable macOS in-app updates, place Sparkle.framework in ${SPARKLE_FRAMEWORK_SEARCH_DIR}.")
+    endif()
+endif()
 
 if (TARGET Qt6::Pdf)
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Pdf)

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+     xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>SimplePresenter Updates</title>
+    <link>https://psnact.github.io/SimplePresenter/appcast.xml</link>
+    <description>Software updates for SimplePresenter</description>
+    <language>en</language>
+
+    <item>
+      <title>SimplePresenter 1.0.1</title>
+      <sparkle:version>1.0.1</sparkle:version>
+      <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
+      <enclosure
+        url="PUT_ZIP_URL_HERE"
+        length="10634602"
+        type="application/octet-stream"
+        sparkle:edSignature="8F89+SAFlGTIGiIh9yUPS0F7cEXuiVb9XsDqhR7s+91mw4jPkKJAa5kA6jE2Q37RyKbA9ZMJqAwLCIuIpPdKCQ=="
+      />
+    </item>
+  </channel>
+</rss>

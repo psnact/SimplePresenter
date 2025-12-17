@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleDevelopmentRegion</key>
+  <string>en</string>
+  <key>CFBundleExecutable</key>
+  <string>@PROJECT_NAME@</string>
+  <key>CFBundleIdentifier</key>
+  <string>@SIMPLEPRESENTER_BUNDLE_ID@</string>
+  <key>CFBundleInfoDictionaryVersion</key>
+  <string>6.0</string>
+  <key>CFBundleName</key>
+  <string>@PROJECT_NAME@</string>
+  <key>CFBundlePackageType</key>
+  <string>APPL</string>
+  <key>CFBundleShortVersionString</key>
+  <string>@PROJECT_VERSION@</string>
+  <key>CFBundleVersion</key>
+  <string>@PROJECT_VERSION@</string>
+
+  <key>LSMinimumSystemVersion</key>
+  <string>@CMAKE_OSX_DEPLOYMENT_TARGET@</string>
+
+  <key>SUFeedURL</key>
+  <string>https://psnact.github.io/SimplePresenter/appcast.xml</string>
+  <key>SUPublicEDKey</key>
+  <string>cXl5sb5n1HCFD9fhVV842OWe3s9P1kBANV5eRd9LE78=</string>
+</dict>
+</plist>
