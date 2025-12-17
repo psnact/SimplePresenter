@@ -13,7 +13,7 @@
       <sparkle:version>1.0.1</sparkle:version>
       <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
       <enclosure
-        url="PUT_ZIP_URL_HERE"
+        url="https://psnact.github.io/SimplePresenter/SimplePresenter-macOS-1.0.1.zip"
         length="10634602"
         type="application/octet-stream"
         sparkle:edSignature="8F89+SAFlGTIGiIh9yUPS0F7cEXuiVb9XsDqhR7s+91mw4jPkKJAa5kA6jE2Q37RyKbA9ZMJqAwLCIuIpPdKCQ=="
