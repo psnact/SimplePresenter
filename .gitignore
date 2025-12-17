@@ -18,6 +18,10 @@ moc_*.cpp
 qrc_*.cpp
 ui_*.h
 
+.DS_Store
+.qtcreator/
+third_party/
+
 # Compiled files
 *.o
 *.obj
