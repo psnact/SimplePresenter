@@ -14,11 +14,11 @@
       <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
       <enclosure
         url="https://psnact.github.io/SimplePresenter/SimplePresenter-macOS-1.0.1.zip"
-        length="10634602"
+        length="13700002"
         type="application/octet-stream"
         sparkle:version="1.0.1"
         sparkle:shortVersionString="1.0.1"
-        sparkle:edSignature="8F89+SAFlGTIGiIh9yUPS0F7cEXuiVb9XsDqhR7s+91mw4jPkKJAa5kA6jE2Q37RyKbA9ZMJqAwLCIuIpPdKCQ=="
+        sparkle:edSignature="ghZANyQH3RQmGABCv71s5nxGzmxxlLGyKUFagqcbnZai5Da0feE5eZcEBr0G3SIiLJyOvYOOyGS9x/JObO1dAA=="
       />
     </item>
   </channel>
