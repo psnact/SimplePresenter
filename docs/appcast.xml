@@ -9,16 +9,16 @@
     <language>en</language>
 
     <item>
-      <title>SimplePresenter 1.0.2</title>
-      <sparkle:version>1.0.2</sparkle:version>
-      <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
+      <title>SimplePresenter 1.0.3</title>
+      <sparkle:version>1.0.3</sparkle:version>
+      <sparkle:shortVersionString>1.0.3</sparkle:shortVersionString>
       <enclosure
-        url="https://psnact.github.io/SimplePresenter/SimplePresenter-macOS-1.0.2.zip"
-        length="13681164"
+        url="https://psnact.github.io/SimplePresenter/SimplePresenter-macOS-1.0.3.zip"
+        length="13700013"
         type="application/octet-stream"
-        sparkle:version="1.0.2"
-        sparkle:shortVersionString="1.0.2"
-        sparkle:edSignature="9GfBoLspcCdUfmMJFddL4yJPZ5JETlPJ0Yhh/kORrdRhG6dj1TH274TSEf9B3Edv/ucjUpvR5HNOMR1oPOvECQ=="
+        sparkle:version="1.0.3"
+        sparkle:shortVersionString="1.0.3"
+        sparkle:edSignature="Qr3McwjZp9OvOmHVQPbZHBm1K8msVvFsDPot9Hgj7Du0832bv8C1K7ZV/HEP9ZIOxpzVQm5vKl3cooDFq8JyDw=="
       />
     </item>
   </channel>
